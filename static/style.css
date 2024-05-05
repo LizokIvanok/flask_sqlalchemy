@@ -1,0 +1,55 @@
+h1 {
+    color: #962163;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+a {
+    margin: 30px;
+    padding: 10px;
+    border: 3px solid #962163;
+    border-radius: 15px;
+    background-color: #E667AF;
+    color: #962163;
+}
+
+img {
+    display: block;
+    margin: 20px auto;
+    width: 200px;
+}
+
+.str {
+    text-align: center;
+    font-size: 20px;
+}
+
+section {
+    width: 250px;
+    height: 300px;
+    padding: 75px;
+    border-radius: 20px;
+}
+
+.yellow {
+    background-color: #FFFFB2;
+    border: 7px dotted #ffff00;
+}
+
+.green {
+    background-color: #A9F2A9;
+    border: 7px dotted #68f368;
+}
+
+article {
+    display: flex;
+    justify-content: space-around;
+}
+
+body {
+    background-color: #f4c3df;
+}
+
+form {
+    margin-top: 20px;
+}
