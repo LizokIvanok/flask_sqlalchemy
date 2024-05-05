@@ -18,6 +18,7 @@ from datetime import datetime
 app = Flask(__name__, template_folder='templates', static_folder='static') # веб-сервис (приложение)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 database = SQLAlchemy(app) # база данных
+locked = True
 
 class Users(database.Model):
     id = database.Column(database.Integer, primary_key=True) # порядковый номер пользователя
@@ -70,7 +71,11 @@ def index():
 
 @app.route("/second")
 def second():
-    return render_template('page.html')
+    global locked
+    if locked == False:
+        return render_template('page.html')
+    else:
+        return redirect('/login')
 
 @app.route("/skam")
 def skam():
@@ -78,10 +83,12 @@ def skam():
 
 @app.route('/login', methods=('GET', 'POST'))
 def login():
+    global locked
     if request.method == 'POST':
         # система смотрит в базу данных и находит первое совпадение по email и паролю
         user = Users.query.filter_by(email=request.form['email']).first()
         if user and user.password == request.form['password']:
+            locked = False
             return redirect('/second')
         else:
             return render_template('login.html', result='неправильный логин или пароль')
